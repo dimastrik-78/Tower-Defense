@@ -1,31 +1,39 @@
 using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 namespace _Source.EnemySystem
 {
+    
     public class ArmoredExplosive : MonoBehaviour
     {
+        //public static Action<int> OnGettingDamage;
+
         private EnemyMovement enemyMovement;
         
         [SerializeField] private Transform enemyPosition;
         [SerializeField] private float speed;
         [SerializeField] private List<Transform> wayPoints;
+        [SerializeField] private int healthPoint;
+        [SerializeField] private float attackSpeed;
+        [SerializeField] private int damage;
 
-        private int currentWayPoint = -1;
+        private int _currentWayPoint;
 
         private void Update()
         {
-            if (currentWayPoint < wayPoints.Count) enemyMovement.Movement(enemyPosition, speed, wayPoints[currentWayPoint]);
-
-            if (currentWayPoint < wayPoints.Count && gameObject.transform.position == wayPoints[currentWayPoint].position)
+            if (_currentWayPoint < wayPoints.Count)
             {
-                currentWayPoint++;
-                enemyPosition.LookAt(wayPoints[currentWayPoint]);
+                enemyMovement.Movement(enemyPosition, speed, wayPoints[_currentWayPoint]);
+                if (gameObject.transform.position == wayPoints[_currentWayPoint].position && _currentWayPoint < wayPoints.Count)
+                {
+                    _currentWayPoint++;
+                }
             }
-            //else if (currentWayPoint >= wayPoints.Count)
+            //if(_currentWayPoint == wayPoints.Count)
             //{
-            //    Destroy(gameObject);
+            //    OnGettingDamage = DoDamage;
             //}
         }
 
@@ -33,17 +41,24 @@ namespace _Source.EnemySystem
         {
             wayPoints = wayPoint;
             enemyMovement = new EnemyMovement();
-            currentWayPoint = 0;
-            enemyPosition.LookAt(wayPoints[currentWayPoint]);
+            _currentWayPoint = 0;
+            enemyPosition.LookAt(wayPoints[_currentWayPoint]);
             EnemyWave.OnChangeState -= Spawn;
-            Debug.Log(wayPoint.Count);
-            Debug.Log(wayPoints.Count);
             
         }
+
+        //private void DoDamage(int healthPoints)
+        //{
+        //    if (_currentWayPoint == wayPoints.Count)
+        //    {
+        //        healthPoints -= damage;
+        //    }
+        //}
         private void OnEnable()
         {
             EnemyWave.OnChangeState += Spawn;
         }
+
     }
 }
 

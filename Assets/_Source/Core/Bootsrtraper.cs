@@ -9,17 +9,23 @@ namespace _Source.Core
         [SerializeField] private GameObject enemyPrefab;
         [SerializeField] private List<Transform> checkPointList;
         [SerializeField] private Transform spawnPoint;
+        [SerializeField] private float startEnemySpawnTimer;
+        [SerializeField] private float startWaveTimer;
+        [SerializeField] private int maxEnemyAmount;
+
+
 
         private EnemyWave _enemyWave;
 
         private void Start()
         {
-            _enemyWave = new EnemyWave(enemyPrefab, checkPointList, spawnPoint);
+            _enemyWave = new EnemyWave(enemyPrefab, checkPointList,startWaveTimer, maxEnemyAmount);
+            
         }
-
+        
         private void Update()
         {
-            _enemyWave.Update();
+            _enemyWave.WaveTimer(startWaveTimer,startEnemySpawnTimer,maxEnemyAmount);
         }
     }
 }
