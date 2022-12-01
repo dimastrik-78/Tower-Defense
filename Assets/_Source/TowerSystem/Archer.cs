@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 // using _Source.EnemySystem;
 using UnityEngine;
@@ -7,13 +6,15 @@ namespace _Source.TowerSystem
 {
     public class Archer : MonoBehaviour
     {
-        [SerializeField] private GameObject weaponPrefab;
+        [SerializeField] private LayerMask enemyLayer;
+        // [SerializeField] private GameObject weaponPrefab; 
         [SerializeField] private Transform spawnPoint;
-        [SerializeField] private float speedAttack;
-        [SerializeField] private int damage;
-        [SerializeField] private float attackRadius;
-
+        // [SerializeField] private float speedAttack;
+        // [SerializeField] private int damage;
+        // [SerializeField] private float attackRadius;
+        
         private PeopleSO _peopleSo;
+        private GameObject _projectilePrefab;
         private TimeControl _timeControl;
         private SphereCollider _triggerZone;
         private List<GameObject> _enemyList;
@@ -29,6 +30,7 @@ namespace _Source.TowerSystem
             _enemyList = new List<GameObject>();
             
             _triggerZone = GetComponent<SphereCollider>();
+            _projectilePrefab = _peopleSo.projectilePrefab;
             _triggerZone.radius = _peopleSo.attackRadius;
 
             _speedAttackTime = _peopleSo.speedAttack;
@@ -39,17 +41,33 @@ namespace _Source.TowerSystem
             if (_enemyList.Count > 0)
                 gameObject.transform.LookAt(_enemyList[0].transform);
 
-            // if (_timeControl.Timer(ref _speedAttackTime))
+            Timer();
         }
 
+        private void LookAtEnemy()
+        {
+            
+        }
+        
+        private void Timer()
+        {
+            _speedAttackTime -= Time.deltaTime;
+            if (_speedAttackTime <= 0)
+            {
+                Instantiate(_projectilePrefab, spawnPoint);
+                _speedAttackTime = _peopleSo.speedAttack;
+            }
+        }
         private void OnTriggerEnter(Collider other)
         {
-            _enemyList.Add(other.gameObject);
+            if (other.gameObject.layer == enemyLayer)
+                _enemyList.Add(other.gameObject);
         }
 
         private void OnTriggerExit(Collider other)
         {
-            _enemyList.Remove(other.gameObject);
+            if (other.gameObject.layer == enemyLayer)
+                _enemyList.Remove(other.gameObject);
         }
     }
 }

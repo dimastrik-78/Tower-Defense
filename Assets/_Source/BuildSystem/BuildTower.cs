@@ -1,4 +1,3 @@
-using System;
 using _Source.TowerSystem;
 using UnityEngine;
 
@@ -6,34 +5,40 @@ namespace _Source.BuildSystem
 {
     public class BuildTower : MonoBehaviour
     {
-
-        private GameObject _panelBuildTower;
+        [SerializeField] private GameObject prefab;
+        [SerializeField] private GameObject panelBuildTower;
+        
         private PeopleSO _peopleSo;
         private Transform _spawnPoint;
 
         private void Start()
         {
             _peopleSo = Resources.Load<PeopleSO>("People");
-            _panelBuildTower = gameObject.transform.GetChild(0).gameObject;
+            // panelBuildTower = gameObject.transform.GetChild(0).gameObject;
             _spawnPoint = gameObject.transform;
         }
 
-        private void Update()
+        // private void Update()
+        // {
+        //     if (Input.GetMouseButtonDown(0) 
+        //         && panelBuildTower.activeSelf)
+        //     {
+        //         panelBuildTower.SetActive(false);
+        //         Debug.Log("false");
+        //     }
+        // }
+        
+        private void OnMouseUp()
         {
-            if (Input.GetMouseButtonDown(0))
-            {
-                _panelBuildTower.SetActive(false);
-            }
-        }
-
-        private void OnMouseDown()
-        {
-            _panelBuildTower.SetActive(true);
+            panelBuildTower.SetActive(true);
         }
 
         public void Build()
         {
-            Instantiate(_peopleSo.weaponPrefab, _spawnPoint);
+            // if (_peopleSo.cost <= )
+            Instantiate(prefab, _spawnPoint);
+            panelBuildTower.SetActive(false);
+            // Destroy(gameObject);
         }
     }
 }
