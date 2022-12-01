@@ -5,10 +5,10 @@ namespace _Source.TowerSystem
     [CreateAssetMenu(fileName = "People", menuName = "TowerDefense/People")]
     public class PeopleSO : ScriptableObject
     {
-        public GameObject weaponPrefab;
-        // public Transform spawnPoint;
-        public float speedAttack;
+        public GameObject projectilePrefab;
+        public int cost;
         public int damage;
+        public float speedAttack;
         public float attackRadius;
     }
 }
