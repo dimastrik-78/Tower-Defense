@@ -1481,6 +1481,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbafb9cd937251499868740a036ebf0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levelButtons: []
+  textResultLevel: []
 --- !u!1 &999126360
 GameObject:
   m_ObjectHideFlags: 0
@@ -1560,7 +1562,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 999126363}
   m_OnClick:
     m_PersistentCalls:
@@ -2032,7 +2034,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1324194244}
   m_OnClick:
     m_PersistentCalls:

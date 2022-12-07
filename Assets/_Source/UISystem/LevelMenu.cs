@@ -1,10 +1,33 @@
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 namespace UISystem
 {
     public class LevelMenu : MonoBehaviour
     {
+        [SerializeField] private Button[] levelButtons;
+        [SerializeField] private Transform[] textResultLevel;
+
+        private void Start()
+        {
+            // Debug.Log(PlayerPrefs.HasKey("Completed Levels"));
+            if (!PlayerPrefs.HasKey("Completed Levels"))
+                PlayerPrefs.SetInt("Completed Levels", 1);
+            // PlayerPrefs.SetInt("Completed Levels", 2);
+
+            for (int i = 0; i < levelButtons.Length; i++)
+            {
+                if (PlayerPrefs.GetInt("Completed Levels") - 2 >= i)
+                {
+                    levelButtons[i].interactable = true;
+                    textResultLevel[i].GetChild(0).gameObject.SetActive(true);
+                    textResultLevel[i].GetChild(1).gameObject.SetActive(false);
+                }
+            }
+        }
+
         public void OneLevel()
         {
             SceneManager.LoadScene(2);
