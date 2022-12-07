@@ -1,17 +1,26 @@
+using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-namespace _Source.UISystem
+namespace UISystem
 {
     public class MainMenu : MonoBehaviour
     {
-        void Start()
-        {
+        [SerializeField] private GameObject tutorialPanel;
         
+        public void Play()
+        {
+            SceneManager.LoadScene(1);
         }
 
-        void Update()
+        public void Tutorial()
         {
-        
+            tutorialPanel.SetActive(true);
+        }
+
+        public void Back()
+        {
+            tutorialPanel.SetActive(false);
         }
     }
 }

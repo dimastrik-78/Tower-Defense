@@ -16,7 +16,7 @@ namespace CameraSystem
         public void Move()
         {
             if (Input.GetAxis("Horizontal") != 0)
-                _rigidbody.velocity = new Vector3(Input.GetAxis("Horizontal") * _speed, 0);
+                _rigidbody.velocity = new Vector3(-Input.GetAxis("Horizontal") * _speed, 0);
         }
     }
 }

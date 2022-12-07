@@ -1,17 +1,28 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-namespace _Source.UISystem
+namespace UISystem
 {
     public class LevelMenu : MonoBehaviour
     {
-        void Start()
+        public void OneLevel()
         {
+            SceneManager.LoadScene(2);
+        }
         
+        public void TwoLevel()
+        {
+            SceneManager.LoadScene(3);
+        }
+        
+        public void ThreeLevel()
+        {
+            SceneManager.LoadScene(4);
         }
 
-        void Update()
+        public void MainMenu()
         {
-        
+            SceneManager.LoadScene(0);
         }
     }
 }
