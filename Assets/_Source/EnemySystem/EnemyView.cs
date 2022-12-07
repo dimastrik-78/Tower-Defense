@@ -1,4 +1,4 @@
-namespace _Source.EnemySystem
+namespace EnemySystem
 {
     public class EnemyView
     {

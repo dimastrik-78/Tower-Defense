@@ -130,10 +130,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffc3bc9aca55031499d5602953e734c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weaponPrefab: {fileID: 2865002553707661903, guid: a2e8599e93fc79c4eb9110701aa12795, type: 3}
+  spawnPoint: {fileID: 4542655741046501575}
   enemyLayer:
     serializedVersion: 2
     m_Bits: 128
-  spawnPoint: {fileID: 4542655741046501575}
 --- !u!135 &4542655741128285108
 SphereCollider:
   m_ObjectHideFlags: 0

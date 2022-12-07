@@ -1,44 +1,31 @@
-using _Source.TowerSystem;
+using System;
+using TowerSystem;
 using UnityEngine;
 
-namespace _Source.BuildSystem
+namespace BuildSystem
 {
     public class BuildTower : MonoBehaviour
     {
-        [SerializeField] private GameObject prefab;
-        [SerializeField] private GameObject panelBuildTower;
+        public static event Action<Transform> OnSelectBuildZone;
         
-        private PeopleSO _peopleSo;
+        [SerializeField] private GameObject panelBuildTower;
+
+        private TowerSO _towerSo;
         private Transform _spawnPoint;
 
         private void Start()
         {
-            _peopleSo = Resources.Load<PeopleSO>("People");
-            // panelBuildTower = gameObject.transform.GetChild(0).gameObject;
+            _towerSo = Resources.Load<TowerSO>("People");
+            
             _spawnPoint = gameObject.transform;
         }
-
-        // private void Update()
-        // {
-        //     if (Input.GetMouseButtonDown(0) 
-        //         && panelBuildTower.activeSelf)
-        //     {
-        //         panelBuildTower.SetActive(false);
-        //         Debug.Log("false");
-        //     }
-        // }
         
         private void OnMouseUp()
         {
+            Debug.Log("test");
             panelBuildTower.SetActive(true);
-        }
-
-        public void Build()
-        {
-            // if (_peopleSo.cost <= )
-            Instantiate(prefab, _spawnPoint);
-            panelBuildTower.SetActive(false);
-            // Destroy(gameObject);
+            
+            OnSelectBuildZone?.Invoke(_spawnPoint);
         }
     }
 }

@@ -10,9 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b48fa1a2656fba34a96d504e679337f2, type: 3}
-  m_Name: People
+  m_Name: Archer
   m_EditorClassIdentifier: 
+  levelView:
+  - {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
   projectilePrefab: {fileID: 2865002553707661903, guid: a2e8599e93fc79c4eb9110701aa12795, type: 3}
-  speedAttack: 1
+  buildBuildCost: 5
+  upgradeCostCost: 0200000003000000
+  upgradeCostBone: 0400000001000000
+  upgradeDamage: 5
+  upgradeAttackSpeed: 5
   damage: 5
-  attackRadius: 10
+  speedAttack: 1
+  attackRadius: 5

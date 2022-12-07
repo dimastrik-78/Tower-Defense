@@ -1,13 +1,11 @@
-using System;
 using System.Collections.Generic;
 using _Source;
 using BulletSystem;
-using EnemySystem;
 using UnityEngine;
 
 namespace TowerSystem
 {
-    public class Archer : TowerBase
+    public class Spearmen : TowerBase
     {
         private TowerSO _towerSo;
 
@@ -15,7 +13,7 @@ namespace TowerSystem
         {
             base.Start();
             
-            _towerSo = Resources.Load<TowerSO>("Archer");
+            _towerSo = Resources.Load<TowerSO>("Spearmen");
 
             AttackRadius.radius = _towerSo.AttackRadius;
             ProjectilePrefab = _towerSo.ProjectilePrefab;
@@ -38,7 +36,7 @@ namespace TowerSystem
                 
                 if (SpeedAttack <= 0)
                 {
-                    Instantiate(ProjectilePrefab, spawnPoint).GetComponent<Arrow>().GettingCharacteristics(Damage);
+                    Instantiate(ProjectilePrefab, spawnPoint).GetComponent<Spear>().GettingCharacteristics(Damage, LevelTower);
                     
                     SpeedAttack = _towerSo.SpeedAttack;
                 }
