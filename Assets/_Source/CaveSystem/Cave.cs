@@ -1,5 +1,6 @@
 using System;
 using EnemySystem;
+using Interface;
 using UnityEngine;
 
 namespace CaveSystem

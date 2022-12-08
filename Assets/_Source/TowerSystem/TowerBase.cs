@@ -36,8 +36,8 @@ namespace TowerSystem
                 gameObject.transform.GetChild(0).LookAt(EnemyList[0].transform);
             }
         }
-        
-        protected void DeleteEnemyFromList(GameObject enemy)
+
+        private void DeleteEnemyFromList(GameObject enemy)
         {
             EnemyList.Remove(enemy);
             

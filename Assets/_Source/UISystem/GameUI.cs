@@ -1,11 +1,9 @@
-using System;
 using BuildSystem;
 using CaveSystem;
 using EnemySystem;
 using ResourcesSystem;
 using TMPro;
 using TowerSystem;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -42,9 +40,9 @@ namespace UISystem
             wave.text = waveNow.ToString();
         }
         
-        private void ChangeEnemyLeft(int enemyLeft)
+        private void ChangeEnemyLeft(int EnemyLeft)
         {
-            this.enemyLeft.value = enemyLeft;
+            this.enemyLeft.value = EnemyLeft;
         }
         
         private void ChangeCaveHeal(int caveHeal)

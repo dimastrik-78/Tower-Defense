@@ -1,5 +1,4 @@
-using System;
-using EnemySystem;
+using Interface;
 using UnityEngine;
 
 namespace BulletSystem
@@ -9,8 +8,8 @@ namespace BulletSystem
         [SerializeField] protected float speed;
         [SerializeField] protected float startTimeLive;
 
-        protected int Damage;
-        protected Rigidbody _rigidbody;
+        private int _damage;
+        private Rigidbody _rigidbody;
             
         protected virtual void Start()
         {
@@ -25,10 +24,10 @@ namespace BulletSystem
 
         public void GettingCharacteristics(int damage)
         {
-            Damage = damage;
+            _damage = damage;
         }
-        
-        protected void Timer()
+
+        private void Timer()
         {
             startTimeLive -= Time.deltaTime;
             if (startTimeLive <= 0)
@@ -41,7 +40,7 @@ namespace BulletSystem
         {
             if (other.gameObject.layer == 7)
             {
-                other.GetComponent<IDamage>()?.TakingDamage(Damage);
+                other.GetComponent<IDamage>()?.TakingDamage(_damage);
                 Destroy(gameObject);
             }
         }

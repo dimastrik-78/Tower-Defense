@@ -1,4 +1,7 @@
-public interface IDamage
+namespace Interface
 {
-    public void TakingDamage(int Damage);
+    public interface IDamage
+    {
+        public void TakingDamage(int Damage);
+    }
 }

@@ -1,4 +1,5 @@
 using System;
+using Interface;
 using ResourcesSystem;
 using UnityEngine;
 
@@ -14,38 +15,29 @@ namespace EnemySystem
         [SerializeField] protected int healthPoint;
         [SerializeField] protected float speed;
         [SerializeField] protected int damage;
-        
-        protected EnemyController EnemyController;
-        protected MeshRenderer Color;
-        protected Transform EnemyPosition;
-        protected Transform[] WayPoints;
-        protected int CurrentWayPoint;
-        protected float TimeRedColor = 0.2f;
-        protected float Time;
+
+        private EnemyController _enemyController;
+        private Transform _enemyPosition;
+        private Transform[] _wayPoints;
+        private int _currentWayPoint;
         
         protected void Awake()
         {
-            Color = GetComponent<MeshRenderer>();
-            EnemyController = new EnemyController();
+            _enemyController = new EnemyController();
             
-            EnemyPosition = gameObject.transform;
-            CurrentWayPoint = 0;
+            _enemyPosition = gameObject.transform;
+            _currentWayPoint = 0;
         }
         
         protected void Update()
         {
-            if (Color.material.color == UnityEngine.Color.red)
-            {
-                Timer();
-            }
+            _enemyController.Movement(_enemyPosition, speed, _wayPoints[_currentWayPoint]);
             
-            EnemyController.Movement(EnemyPosition, speed, WayPoints[CurrentWayPoint]);
-            
-            if (gameObject.transform.position == WayPoints[CurrentWayPoint].position && CurrentWayPoint < WayPoints.Length)
+            if (gameObject.transform.position == _wayPoints[_currentWayPoint].position && _currentWayPoint < _wayPoints.Length)
             {
-                CurrentWayPoint++;
+                _currentWayPoint++;
                     
-                if(CurrentWayPoint == WayPoints.Length)
+                if(_currentWayPoint == _wayPoints.Length)
                 {
                     OnDealingDamage?.Invoke(damage);
                     OnDeadTwoAction?.Invoke(false);
@@ -54,20 +46,20 @@ namespace EnemySystem
                     return;
                 }
                     
-                EnemyController.Look(EnemyPosition, WayPoints[CurrentWayPoint]);
+                _enemyController.Look(_enemyPosition, _wayPoints[_currentWayPoint]);
             }
         }
-        
-        protected void Spawn(Transform[] wayPoint)
+
+        private void Spawn(Transform[] wayPoint)
         {
-            WayPoints = wayPoint;
-            CurrentWayPoint = 0;
-            EnemyController.Look(EnemyPosition, WayPoints[CurrentWayPoint]);
+            _wayPoints = wayPoint;
+            _currentWayPoint = 0;
+            _enemyController.Look(_enemyPosition, _wayPoints[_currentWayPoint]);
             
             EnemyWave.OnChangeState -= Spawn;
         }
-        
-        protected void CheckHeal()
+
+        private void CheckHeal()
         {
             if (healthPoint <= 0)
             {
@@ -77,19 +69,6 @@ namespace EnemySystem
 
                 Destroy(gameObject);
             }
-        }
-
-        protected void Timer()
-        {
-            Time -= UnityEngine.Time.deltaTime;
-            if (Time <= 0)
-                Color.material.color = UnityEngine.Color.clear;
-        }
-        
-        protected void SwitchColor()
-        {
-            Color.material.color = UnityEngine.Color.red;
-            Time = TimeRedColor;
         }
         
         protected void OnEnable()
@@ -102,7 +81,6 @@ namespace EnemySystem
             healthPoint -= Damage;
         
             CheckHeal();
-            SwitchColor();
         }
     }
 }
