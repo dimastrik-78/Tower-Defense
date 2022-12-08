@@ -1,6 +1,9 @@
 using System;
 using BuildSystem;
-using MaterialSystem;
+using CaveSystem;
+using EnemySystem;
+using ResourcesSystem;
+using TMPro;
 using TowerSystem;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -10,77 +13,108 @@ namespace UISystem
 {
     public class GameUI : MonoBehaviour
     {
-        [SerializeField] private GameObject panel;
-        [SerializeField] private Text textStone;
-        [SerializeField] private Text textFlesh;
+        [Header("Game information")]
+        [SerializeField] private TextMeshProUGUI textHeal;
+        [SerializeField] private TextMeshProUGUI textStone;
+        [SerializeField] private TextMeshProUGUI textBone;
+        [SerializeField] private TextMeshProUGUI wave;
+        [SerializeField] private Slider enemyLeft;
+
+        [Header("Towers")] 
+        [SerializeField] private TowerSO[] towerSo;
+        [SerializeField] private GameObject buildPanel;
+        [SerializeField] private TextMeshProUGUI[] textTowerCost;
+
+        [SerializeField] private Upgrade upgrade;
         
         private Transform _spawnPoint;
-        private TowerSO _towerSo;
-        private Upgrade _upgrade;
 
         private void Start()
         {
-            _upgrade = new Upgrade();
+            for (int i = 0; i < towerSo.Length; i++)
+            {
+                textTowerCost[i].text = towerSo[i].BuildCost.ToString();
+            }
         }
 
+        private void WaveNow(int waveNow)
+        {
+            wave.text = waveNow.ToString();
+        }
+        
+        private void ChangeEnemyLeft(int enemyLeft)
+        {
+            this.enemyLeft.value = enemyLeft;
+        }
+        
+        private void ChangeCaveHeal(int caveHeal)
+        {
+            textHeal.text = caveHeal.ToString();
+        }
+        
         private void ChangeMaterials(int stone, int flesh)
         {
             textStone.text = stone.ToString();
-            textFlesh.text = flesh.ToString();
+            textBone.text = flesh.ToString();
         }
         
         private void OnEnable()
         {
             BuildTower.OnSelectBuildZone += Settings;
             ResourcesBank.OnChangeMaterial += ChangeMaterials;
+            Cave.OnChangeHeal += ChangeCaveHeal;
+            EnemyWave.OnChangeWave += WaveNow;
+            EnemyWave.OnChangeEnemyCount += ChangeEnemyLeft;
         }
 
         private void OnDisable()
         {
             BuildTower.OnSelectBuildZone -= Settings;
             ResourcesBank.OnChangeMaterial -= ChangeMaterials;
+            Cave.OnChangeHeal -= ChangeCaveHeal;
+            EnemyWave.OnChangeWave -= WaveNow;
+            EnemyWave.OnChangeEnemyCount -= ChangeEnemyLeft;
         }
 
         private void Settings(Transform spawnPoint)
         {
             _spawnPoint = spawnPoint;
+
+            buildPanel.SetActive(true);
         }
-        
+
         public void BuildArcherTower()
         {
-            _towerSo = Resources.Load<TowerSO>("Archer");
-            if (int.Parse(textStone.text) >= _towerSo.BuildCost)
+            if (int.Parse(textStone.text) >= towerSo[0].BuildCost)
             {
-                Instantiate(_towerSo.LevelView[0], _spawnPoint).GetComponent<TowerBase>().Upgrade = _upgrade;
-                ResourcesBank.OnAddingRemovingMaterials?.Invoke(-_towerSo.BuildCost, 0);
+                Instantiate(towerSo[0].TowerBase, _spawnPoint).GetComponent<Archer>().Upgrade = upgrade;
+                ResourcesBank.OnAddingRemovingMaterials?.Invoke(-towerSo[0].BuildCost, 0);
                     
-                panel.SetActive(false);
+                buildPanel.SetActive(false);
             }
         }
         
         public void BuildSpearmanTower()
         {
-            _towerSo = Resources.Load<TowerSO>("Spearman");
-            if (int.Parse(textStone.text) >= _towerSo.BuildCost)
+            if (int.Parse(textStone.text) >= towerSo[1].BuildCost)
             {
-                Instantiate(_towerSo.LevelView[0], _spawnPoint).GetComponent<TowerBase>().Upgrade = _upgrade;
+                Instantiate(towerSo[1].TowerBase, _spawnPoint).GetComponent<Spearmen>().Upgrade = upgrade;
                     
-                ResourcesBank.OnAddingRemovingMaterials?.Invoke(-_towerSo.BuildCost, 0);
+                ResourcesBank.OnAddingRemovingMaterials?.Invoke(-towerSo[1].BuildCost, 0);
                 
-                panel.SetActive(false);
+                buildPanel.SetActive(false);
             }
         }
         
         public void BuildCatapultTower()
         {
-            _towerSo = Resources.Load<TowerSO>("Catapult");
-            if (int.Parse(textStone.text) >= _towerSo.BuildCost)
+            if (int.Parse(textStone.text) >= towerSo[2].BuildCost)
             {
-                Instantiate(_towerSo.LevelView[0], _spawnPoint).GetComponent<TowerBase>().Upgrade = _upgrade;
+                Instantiate(towerSo[2].TowerBase, _spawnPoint).GetComponent<Catapults>().Upgrade = upgrade;
                     
-                ResourcesBank.OnAddingRemovingMaterials?.Invoke(-_towerSo.BuildCost, 0);
+                ResourcesBank.OnAddingRemovingMaterials?.Invoke(-towerSo[2].BuildCost, 0);
                     
-                panel.SetActive(false);
+                buildPanel.SetActive(false);
             }
         }
     }

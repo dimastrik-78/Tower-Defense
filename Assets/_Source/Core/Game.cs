@@ -6,10 +6,13 @@ namespace Core
 {
     public class Game
     {
+        private GameObject _winPanel;
         private GameObject _losePanel;
+        private int _numLevel;
         
-        public Game(GameObject losePanel)
+        public Game(GameObject winPanel, GameObject losePanel)
         {
+            _winPanel = winPanel;
             _losePanel = losePanel;
 
             OnEnable();
@@ -25,7 +28,15 @@ namespace Core
 
         private void LevelPassed()
         {
+            _winPanel.SetActive(true);
             
+            Time.timeScale = 0;
+
+            _numLevel = PlayerPrefs.GetInt("Completed Levels");
+            PlayerPrefs.SetInt("Completed Levels", _numLevel++);
+            
+            Cave.OnLoseGame -= LoseGame;
+            EnemyWave.OnLevelPassed -= LevelPassed;
         }
         
         private void LoseGame()
@@ -35,6 +46,7 @@ namespace Core
             Time.timeScale = 0;
             
             Cave.OnLoseGame -= LoseGame;
+            EnemyWave.OnLevelPassed -= LevelPassed;
         }
     }
 }

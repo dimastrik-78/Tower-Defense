@@ -12,14 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b48fa1a2656fba34a96d504e679337f2, type: 3}
   m_Name: Catapults
   m_EditorClassIdentifier: 
+  towerBase: {fileID: 1510013039829766627, guid: df216642bd8a3a948887e08a2c6a4563, type: 3}
   levelView:
-  - {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
-  projectilePrefab: {fileID: 2865002553707661903, guid: 41197ca3e5ccfa7449ff5cdbe70b22d9, type: 3}
-  buildBuildCost: 5
+  - {fileID: 3506746698443947537, guid: a515f32697582504f97a7f43c659fe15, type: 3}
+  - {fileID: 3657628400386545573, guid: a515f32697582504f97a7f43c659fe15, type: 3}
+  - {fileID: -2497758263393791956, guid: a515f32697582504f97a7f43c659fe15, type: 3}
+  projectilePrefab: {fileID: 5563610026840746091, guid: 985d610522f114e40bea844f7893a5a2, type: 3}
+  buildBuildCost: 4
   upgradeCostCost: 0200000003000000
   upgradeCostBone: 0400000001000000
   upgradeDamage: 5
   upgradeAttackSpeed: 5
   damage: 5
   speedAttack: 1
-  attackRadius: 5
+  attackRadius: 0.05

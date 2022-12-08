@@ -12,7 +12,7 @@ namespace TowerSystem
         {
             base.Start();
             
-            _towerSo = Resources.Load<TowerSO>("Spearmen");
+            _towerSo = Resources.Load<TowerSO>("Spearman");
 
             AttackRadius.radius = _towerSo.AttackRadius;
             ProjectilePrefab = _towerSo.ProjectilePrefab;
@@ -49,7 +49,7 @@ namespace TowerSystem
         private void OnMouseDown()
         {
             if (LevelTower < 3)
-                Upgrade.Up(_towerSo, this);
+                Upgrade.Settings(_towerSo, this);
         }
     }
 }

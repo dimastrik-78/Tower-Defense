@@ -1,5 +1,4 @@
 using System;
-using TowerSystem;
 using UnityEngine;
 
 namespace BuildSystem
@@ -8,24 +7,20 @@ namespace BuildSystem
     {
         public static event Action<Transform> OnSelectBuildZone;
         
-        [SerializeField] private GameObject panelBuildTower;
+        [SerializeField] private Transform spawnPoint;
 
-        private TowerSO _towerSo;
-        private Transform _spawnPoint;
+        private Collider _collider;
 
         private void Start()
         {
-            _towerSo = Resources.Load<TowerSO>("People");
-            
-            _spawnPoint = gameObject.transform;
+            _collider = GetComponent<Collider>();
         }
-        
-        private void OnMouseUp()
+
+        private void OnMouseDown()
         {
-            Debug.Log("test");
-            panelBuildTower.SetActive(true);
-            
-            OnSelectBuildZone?.Invoke(_spawnPoint);
+            OnSelectBuildZone?.Invoke(spawnPoint);
+
+            _collider.enabled = false;
         }
     }
 }

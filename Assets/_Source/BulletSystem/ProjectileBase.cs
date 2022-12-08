@@ -1,11 +1,11 @@
 using System;
+using EnemySystem;
 using UnityEngine;
 
 namespace BulletSystem
 {
     public abstract class ProjectileBase : MonoBehaviour
     {
-        [SerializeField] protected LayerMask enemyLayer;
         [SerializeField] protected float speed;
         [SerializeField] protected float startTimeLive;
 
@@ -14,8 +14,6 @@ namespace BulletSystem
             
         protected virtual void Start()
         {
-            gameObject.transform.parent = null;
-            
             _rigidbody = GetComponent<Rigidbody>();
             _rigidbody.AddForce(transform.forward * speed, ForceMode.Impulse);
         }
@@ -41,9 +39,9 @@ namespace BulletSystem
 
         protected virtual void OnTriggerEnter(Collider other)
         {
-            if ((other.gameObject.layer & (1 << enemyLayer.value)) != 0)
+            if (other.gameObject.layer == 7)
             {
-                other.GetComponent<IDamage>().TakingDamage(Damage);
+                other.GetComponent<IDamage>()?.TakingDamage(Damage);
                 Destroy(gameObject);
             }
         }

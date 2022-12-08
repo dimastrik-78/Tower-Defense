@@ -1,19 +1,20 @@
 using System.Collections.Generic;
 using EnemySystem;
-using MaterialSystem;
+using ResourcesSystem;
 using UnityEngine;
 
 namespace Core
 {
     public class Bootstrapper : MonoBehaviour
     {
+        [SerializeField] private GameObject winPanel;
         [SerializeField] private GameObject losePanel;
         
         [Header("Wave Settings")]
         [SerializeField] private GameObject[] enemyPrefab;
         [SerializeField] private List<int> maxEnemyAmount;
-        [SerializeField] private Transform spawnPoint;
-        [SerializeField] private Transform[] checkPointList;
+        [SerializeField] private Transform[] checkPointList1;
+        [SerializeField] private Transform[] checkPointList2;
         [SerializeField] private float startNewWaveTimer;
         [SerializeField] private float spawnEnemyAfterEnemy;
         [SerializeField] private int waveAmount;
@@ -31,11 +32,11 @@ namespace Core
 
         private void Start()
         {
-            _enemyWave = new EnemyWave(enemyPrefab, spawnPoint, checkPointList, 
+            _enemyWave = new EnemyWave(enemyPrefab, checkPointList1, checkPointList2, 
                 startNewWaveTimer, spawnEnemyAfterEnemy, waveAmount, 
                 allEnemyCount, maxEnemyAmount, bonusFromKillingEnemies);
             _resourcesBank = new ResourcesBank(addStone, stoneExtractionTime);
-            _game = new Game(losePanel);
+            _game = new Game(winPanel, losePanel);
             
             _resourcesBank.Start(countStartStone);
         }

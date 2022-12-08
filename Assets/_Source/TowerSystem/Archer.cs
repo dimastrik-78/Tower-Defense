@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using BulletSystem;
 using EnemySystem;
+using Unity.Mathematics;
 using UnityEngine;
 
 namespace TowerSystem
@@ -37,7 +38,7 @@ namespace TowerSystem
                 
                 if (SpeedAttack <= 0)
                 {
-                    Instantiate(ProjectilePrefab, spawnPoint).GetComponent<Arrow>().GettingCharacteristics(Damage);
+                    Instantiate(ProjectilePrefab, spawnPoint.position, spawnPoint.rotation).GetComponent<Arrow>().GettingCharacteristics(Damage);
                     
                     SpeedAttack = _towerSo.SpeedAttack;
                 }
@@ -51,7 +52,7 @@ namespace TowerSystem
         private void OnMouseDown()
         {
             if (LevelTower < 3)
-                Upgrade.Up(_towerSo, this);
+                Upgrade.Settings(_towerSo, this);
         }
     }
 }

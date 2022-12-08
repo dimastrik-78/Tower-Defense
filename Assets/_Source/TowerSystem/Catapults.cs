@@ -35,7 +35,7 @@ namespace TowerSystem
                 
                 if (SpeedAttack <= 0)
                 {
-                    Instantiate(ProjectilePrefab, spawnPoint).GetComponent<CatapultProjectile>().GettingCharacteristics(Damage, LevelTower);
+                    Instantiate(ProjectilePrefab, spawnPoint).GetComponent<CatapultProjectile>().GettingCharacteristics(Damage);
                     
                     SpeedAttack = _towerSo.SpeedAttack;
                 }
@@ -49,7 +49,7 @@ namespace TowerSystem
         private void OnMouseDown()
         {
             if (LevelTower < 3)
-                Upgrade.Up(_towerSo, this);
+                Upgrade.Settings(_towerSo, this);
         }
     }
 }

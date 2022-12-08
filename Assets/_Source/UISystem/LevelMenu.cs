@@ -12,10 +12,8 @@ namespace UISystem
 
         private void Start()
         {
-            // Debug.Log(PlayerPrefs.HasKey("Completed Levels"));
             if (!PlayerPrefs.HasKey("Completed Levels"))
                 PlayerPrefs.SetInt("Completed Levels", 1);
-            // PlayerPrefs.SetInt("Completed Levels", 2);
 
             for (int i = 0; i < levelButtons.Length; i++)
             {

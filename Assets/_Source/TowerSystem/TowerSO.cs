@@ -5,7 +5,7 @@ namespace TowerSystem
     [CreateAssetMenu(fileName = "People", menuName = "TowerDefense/People")]
     public class TowerSO : ScriptableObject
     {
-        // [SerializeField] private GameObject levelOne;
+        [SerializeField] private GameObject towerBase;
         [SerializeField] private Mesh[] levelView;
         [SerializeField] private GameObject projectilePrefab;
         [SerializeField] private int buildBuildCost;
@@ -17,7 +17,7 @@ namespace TowerSystem
         [SerializeField] private float speedAttack;
         [SerializeField] private float attackRadius;
         
-        // public GameObject LevelOne { get => levelOne; }
+        public GameObject TowerBase { get => towerBase; }
         public Mesh[] LevelView { get => levelView; }
         public GameObject ProjectilePrefab { get => projectilePrefab; }
         public int BuildCost { get => buildBuildCost; }

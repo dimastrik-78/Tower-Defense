@@ -8,18 +8,20 @@ namespace EnemySystem
 {
     public class EnemyWave
     {
+        public static event Action<int> OnChangeWave;
+        public static event Action<int> OnChangeEnemyCount;
         public static event Action OnLevelPassed;
         public static event Action MiningTimerReduction;
         public static event Action<Transform[]> OnChangeState;
         
         private GameObject[] _enemy;
-        private Transform[] _checkPointList;
-        private Transform _spawnPoint;
+        private Transform[] _checkPointList1;
+        private Transform[] _checkPointList2;
         private float _startNewWaveTime;
         private float _enemySpawnTime;
         private float _enemySpawnTimer;
         private int _waveAmount;
-        private int _waveNow;
+        private int _waveNow = 1;
         private int _allEnemyCount;
         private int _enemyWaveCount;
         private int _enemyCountNow;
@@ -29,9 +31,10 @@ namespace EnemySystem
         private int _enemyDeathByTower;
         private Random _random;
         private int _randomNumber;
+        private int _enemiesLeft;
 
 
-        public EnemyWave(GameObject[] enemyPrefabs, Transform spawnPoint, Transform[] checkPointList, 
+        public EnemyWave(GameObject[] enemyPrefabs, Transform[] checkPointList1, Transform[] checkPointList2, 
             float startNewWaveTime, float spawnEnemyAfterEnemy, 
             int waveAmount, int allEnemyCount, List<int> enemyAmount,
             int bonusFromKillingEnemies)
@@ -40,8 +43,8 @@ namespace EnemySystem
             
             _enemy = enemyPrefabs;
             
-            _spawnPoint = spawnPoint;
-            _checkPointList = checkPointList;
+            _checkPointList1 = checkPointList1;
+            _checkPointList2 = checkPointList2;
             
             _startNewWaveTime = startNewWaveTime;
             
@@ -60,12 +63,14 @@ namespace EnemySystem
 
             _bonusFromKillingEnemies = bonusFromKillingEnemies;
 
+            _enemiesLeft = allEnemyCount;
+            
             OnEnable();
         }
 
         private void OnEnable()
         {
-            EnemyBase.OnDeadTwoAction += EnemyDie;
+            Enemy.OnDeadTwoAction += EnemyDie;
         }
         
         private void SettingsEnemyList()
@@ -86,14 +91,27 @@ namespace EnemySystem
             {
                 RandomNumber();
                 
-                Object.Instantiate(_enemy[_randomNumber], _spawnPoint);
+                if (_random.Next(0, 2) == 0)
+                {
+                    Object.Instantiate(_enemy[_randomNumber], _checkPointList1[0]);
                 
-                OnChangeState?.Invoke(_checkPointList);
+                    OnChangeState?.Invoke(_checkPointList1);
+                }
+                else
+                {
+                    Object.Instantiate(_enemy[_randomNumber], _checkPointList2[0]);
+                
+                    OnChangeState?.Invoke(_checkPointList2);
+                }
                 
                 _enemyCountNow++;
                 _enemyAmountNow[_randomNumber]--;
 
                 _enemySpawnTimer = _enemySpawnTime;
+
+                _enemiesLeft--;
+                
+                OnChangeEnemyCount?.Invoke(_enemiesLeft);
             }
 
             if (ZeroEnemyList(_enemyAmountNow)
@@ -102,7 +120,7 @@ namespace EnemySystem
 
             if (_waveNow > _waveAmount)
             {
-                EnemyBase.OnDeadTwoAction -= EnemyDie;
+                Enemy.OnDeadTwoAction -= EnemyDie;
                 OnLevelPassed?.Invoke();
             }
         }
@@ -135,6 +153,8 @@ namespace EnemySystem
             _enemySpawnTimer = _startNewWaveTime;
 
             SettingsEnemyList();
+            
+            OnChangeWave?.Invoke(_waveNow);
         }
         
         private void RandomNumber()

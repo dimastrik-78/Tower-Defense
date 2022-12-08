@@ -33,16 +33,7 @@ namespace TowerSystem
         {
             if (EnemyList.Count > 0)
             {
-                gameObject.transform.LookAt(EnemyList[0].transform);
-                // try
-                // {
-                //     gameObject.transform.LookAt(EnemyList[0].transform);
-                // }
-                // catch
-                // {
-                //     EnemyList.RemoveAt(0);
-                //     throw;
-                // }
+                gameObject.transform.GetChild(0).LookAt(EnemyList[0].transform);
             }
         }
         
@@ -50,22 +41,22 @@ namespace TowerSystem
         {
             EnemyList.Remove(enemy);
             
-            enemy.GetComponent<EnemyBase>().OnDeadOneAction -= DeleteEnemyFromList;
+            enemy.GetComponent<Enemy>().OnDeadOneAction -= DeleteEnemyFromList;
         }
         
         protected virtual void OnTriggerEnter(Collider other)
         {
-            if ((other.gameObject.layer & (1 << enemyLayer.value)) != 0)
+            if (other.gameObject.layer == 7)
             { 
                 EnemyList.Add(other.gameObject);
                 
-                other.GetComponent<EnemyBase>().OnDeadOneAction += DeleteEnemyFromList;
+                other.GetComponent<Enemy>().OnDeadOneAction += DeleteEnemyFromList;
             }
         }
         
         protected void OnTriggerExit(Collider other)
         {
-            if ((other.gameObject.layer & (1 << enemyLayer.value)) != 0)
+            if (other.gameObject.layer == 7)
                 DeleteEnemyFromList(other.gameObject);
         }
     }

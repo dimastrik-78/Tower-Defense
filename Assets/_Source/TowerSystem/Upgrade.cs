@@ -1,10 +1,16 @@
-using MaterialSystem;
+using ResourcesSystem;
+using TMPro;
 using UnityEngine;
 
 namespace TowerSystem
 {
-    public class Upgrade
+    public class Upgrade : MonoBehaviour
     {
+        [SerializeField] private GameObject upgradePanel;
+        [SerializeField] private TextMeshProUGUI[] textUpgrade;
+        
+        private TowerSO _towerSO;
+        private TowerBase _towerBase;
         private int _stone;
         private int _bone;
 
@@ -18,19 +24,32 @@ namespace TowerSystem
             _stone = stone;
             _bone = bone;
         }
-        
-        public void Up(TowerSO towerSO, TowerBase towerBase)
+
+        public void Settings(TowerSO towerSO, TowerBase towerBase)
         {
-            if (_stone >= towerSO.UpgradeCostStone[towerBase.LevelTower]
-                && _bone >= towerSO.UpgradeCostBone[towerBase.LevelTower])
+            _towerSO = towerSO;
+            _towerBase = towerBase;
+            
+            upgradePanel.SetActive(true);
+
+            textUpgrade[0].text = _towerSO.UpgradeCostStone[_towerBase.LevelTower - 1].ToString();
+            textUpgrade[1].text = _towerSO.UpgradeCostBone[_towerBase.LevelTower - 1].ToString();
+        }
+        
+        public void Up()
+        {
+            if (_stone >= _towerSO.UpgradeCostStone[_towerBase.LevelTower - 1]
+                && _bone >= _towerSO.UpgradeCostBone[_towerBase.LevelTower - 1])
             {
-                towerBase.LevelTower++;
-                towerBase.Damage += towerSO.UpgradeDamage;
-                towerBase.SpeedAttack += towerSO.UpgradeAttackSpeed;
-                towerBase.MeshFilter.mesh = towerSO.LevelView[towerBase.LevelTower];
+                ResourcesBank.OnAddingRemovingMaterials?.Invoke(-_towerSO.UpgradeCostStone[_towerBase.LevelTower - 1], -_towerSO.UpgradeCostBone[_towerBase.LevelTower - 1]);
                 
-                ResourcesBank.OnAddingRemovingMaterials?.Invoke(-towerSO.UpgradeCostStone[towerBase.LevelTower], -towerSO.UpgradeCostBone[towerBase.LevelTower]);
+                _towerBase.LevelTower++;
+                _towerBase.Damage += _towerSO.UpgradeDamage;
+                _towerBase.SpeedAttack += _towerSO.UpgradeAttackSpeed;
+                _towerBase.MeshFilter.mesh = _towerSO.LevelView[_towerBase.LevelTower - 1];
             }
+            
+            upgradePanel.SetActive(false);
         }
     }
 }

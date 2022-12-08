@@ -6,20 +6,26 @@ namespace CaveSystem
 {
     public class Cave : MonoBehaviour, IDamage
     {
-        public static Action OnLoseGame;
+        public static event Action OnLoseGame;
+        public static event Action<int> OnChangeHeal;
         
         [SerializeField] private int healthPoints;
 
+        private void Start()
+        {
+            OnChangeHeal?.Invoke(healthPoints);
+        }
+
         private void OnEnable()
         {
-            EnemyBase.OnDealingDamage += TakingDamage;
+            Enemy.OnDealingDamage += TakingDamage;
         }
 
         private void CheckHeal()
         {
             if (healthPoints <= 0)
             {
-                EnemyBase.OnDealingDamage -= TakingDamage;
+                Enemy.OnDealingDamage -= TakingDamage;
                 
                 OnLoseGame?.Invoke();
             }
@@ -30,6 +36,8 @@ namespace CaveSystem
             healthPoints -= Damage;
 
             CheckHeal();
+            
+            OnChangeHeal?.Invoke(healthPoints);
         }
     }
 }
