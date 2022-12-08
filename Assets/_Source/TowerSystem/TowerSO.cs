@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace TowerSystem
 {
@@ -7,9 +8,10 @@ namespace TowerSystem
     {
         [SerializeField] private GameObject towerBase;
         [SerializeField] private Mesh[] levelView;
+        [SerializeField] private Sprite[] levelViewSprite;
         [SerializeField] private GameObject projectilePrefab;
         [SerializeField] private int buildBuildCost;
-        [SerializeField] private int[] upgradeCostCost;
+        [SerializeField] private int[] upgradeCostStone;
         [SerializeField] private int[] upgradeCostBone;
         [SerializeField] private int upgradeDamage;
         [SerializeField] private float upgradeAttackSpeed;
@@ -19,9 +21,10 @@ namespace TowerSystem
         
         public GameObject TowerBase { get => towerBase; }
         public Mesh[] LevelView { get => levelView; }
+        public Sprite[] LevelViewSprite { get => levelViewSprite; }
         public GameObject ProjectilePrefab { get => projectilePrefab; }
         public int BuildCost { get => buildBuildCost; }
-        public int[] UpgradeCostStone { get => upgradeCostCost; }
+        public int[] UpgradeCostStone { get => upgradeCostStone; }
         public int[] UpgradeCostBone { get => upgradeCostBone; }
         public int UpgradeDamage { get => upgradeDamage; }
         public float UpgradeAttackSpeed { get => upgradeAttackSpeed; }

@@ -2,6 +2,7 @@ using System;
 using Interface;
 using ResourcesSystem;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace EnemySystem
 {
@@ -11,10 +12,11 @@ namespace EnemySystem
         public Action<GameObject> OnDeadOneAction;
         public static event Action<bool> OnDeadTwoAction;
 
-        [SerializeField] protected int extraditionBone;
-        [SerializeField] protected int healthPoint;
-        [SerializeField] protected float speed;
-        [SerializeField] protected int damage;
+        [SerializeField] private Slider heal;
+        [SerializeField] private int extraditionBone;
+        [SerializeField] private int healthPoint;
+        [SerializeField] private float speed;
+        [SerializeField] private int damage;
 
         private EnemyController _enemyController;
         private Transform _enemyPosition;
@@ -27,6 +29,9 @@ namespace EnemySystem
             
             _enemyPosition = gameObject.transform;
             _currentWayPoint = 0;
+
+            heal.maxValue = healthPoint;
+            heal.value = healthPoint;
         }
         
         protected void Update()
@@ -79,6 +84,7 @@ namespace EnemySystem
         public void TakingDamage(int Damage)
         {
             healthPoint -= Damage;
+            heal.value = healthPoint;
         
             CheckHeal();
         }

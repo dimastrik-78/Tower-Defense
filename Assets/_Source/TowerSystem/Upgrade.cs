@@ -1,13 +1,15 @@
 using ResourcesSystem;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace TowerSystem
 {
     public class Upgrade : MonoBehaviour
     {
-        [SerializeField] private GameObject buildUI;
+        [SerializeField] private GameObject buildPanel;
         [SerializeField] private GameObject upgradePanel;
+        [SerializeField] private Image sprite;
         [SerializeField] private TextMeshProUGUI[] textUpgrade;
         
         private TowerSO _towerSO;
@@ -32,8 +34,9 @@ namespace TowerSystem
             _towerBase = towerBase;
             
             upgradePanel.SetActive(true);
-            buildUI.SetActive(false);
+            buildPanel.SetActive(false);
 
+            sprite.sprite = _towerSO.LevelViewSprite[_towerBase.LevelTower - 1];
             textUpgrade[0].text = _towerSO.UpgradeCostStone[_towerBase.LevelTower - 1].ToString();
             textUpgrade[1].text = _towerSO.UpgradeCostBone[_towerBase.LevelTower - 1].ToString();
         }

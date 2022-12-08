@@ -17,9 +17,12 @@ MonoBehaviour:
   - {fileID: 3506746698443947537, guid: a515f32697582504f97a7f43c659fe15, type: 3}
   - {fileID: 3657628400386545573, guid: a515f32697582504f97a7f43c659fe15, type: 3}
   - {fileID: -2497758263393791956, guid: a515f32697582504f97a7f43c659fe15, type: 3}
+  levelViewSprite:
+  - {fileID: 21300000, guid: b3179eded1a65444481ef61cf1fb4cca, type: 3}
+  - {fileID: 21300000, guid: 2e2949d2f6496034fbe1a087507cfbc2, type: 3}
   projectilePrefab: {fileID: 5563610026840746091, guid: 985d610522f114e40bea844f7893a5a2, type: 3}
   buildBuildCost: 60
-  upgradeCostCost: 5000000064000000
+  upgradeCostStone: 5000000064000000
   upgradeCostBone: 1200000024000000
   upgradeDamage: 5
   upgradeAttackSpeed: -2.5

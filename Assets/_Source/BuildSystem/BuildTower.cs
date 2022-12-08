@@ -5,7 +5,7 @@ namespace BuildSystem
 {
     public class BuildTower : MonoBehaviour
     {
-        public static event Action<Transform> OnSelectBuildZone;
+        public static event Action<Transform, Collider> OnSelectBuildZone;
         
         [SerializeField] private Transform spawnPoint;
 
@@ -18,9 +18,7 @@ namespace BuildSystem
 
         private void OnMouseDown()
         {
-            OnSelectBuildZone?.Invoke(spawnPoint);
-
-            _collider.enabled = false;
+            OnSelectBuildZone?.Invoke(spawnPoint, _collider);
         }
     }
 }

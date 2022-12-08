@@ -27,6 +27,7 @@ namespace UISystem
         [SerializeField] private Upgrade upgrade;
         
         private Transform _spawnPoint;
+        private Collider _platformCollider;
 
         private void Start()
         {
@@ -75,22 +76,29 @@ namespace UISystem
             EnemyWave.OnChangeEnemyCount -= ChangeEnemyLeft;
         }
 
-        private void Settings(Transform spawnPoint)
+        private void Settings(Transform spawnPoint, Collider collider)
         {
             _spawnPoint = spawnPoint;
-
+            _platformCollider = collider;
+            
             buildPanel.SetActive(true);
             upgradePanel.SetActive(false);
         }
 
+        private void OffObject()
+        {
+            buildPanel.SetActive(false);
+            _platformCollider.enabled = false;
+        }
+        
         public void BuildArcherTower()
         {
             if (int.Parse(textStone.text) >= towerSo[0].BuildCost)
             {
                 Instantiate(towerSo[0].TowerBase, _spawnPoint).GetComponent<Archer>().Upgrade = upgrade;
                 ResourcesBank.OnAddingRemovingMaterials?.Invoke(-towerSo[0].BuildCost, 0);
-                    
-                buildPanel.SetActive(false);
+
+                OffObject();
             }
         }
         
@@ -102,7 +110,7 @@ namespace UISystem
                     
                 ResourcesBank.OnAddingRemovingMaterials?.Invoke(-towerSo[1].BuildCost, 0);
                 
-                buildPanel.SetActive(false);
+                OffObject();
             }
         }
         
@@ -114,7 +122,7 @@ namespace UISystem
                     
                 ResourcesBank.OnAddingRemovingMaterials?.Invoke(-towerSo[2].BuildCost, 0);
                     
-                buildPanel.SetActive(false);
+                OffObject();
             }
         }
     }

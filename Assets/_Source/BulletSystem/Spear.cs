@@ -30,6 +30,10 @@ namespace BulletSystem
                 other.GetComponent<IDamage>().TakingDamage(999999);
                 Destroy(gameObject);
             }
+            else
+            {
+                base.OnTriggerEnter(other);
+            }
         }
     }
 }

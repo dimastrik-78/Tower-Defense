@@ -38,7 +38,8 @@ namespace BulletSystem
 
         protected virtual void OnTriggerEnter(Collider other)
         {
-            if (other.gameObject.layer == 7)
+            if (other.gameObject.layer == 7
+                || other.gameObject.layer == 3)
             {
                 other.GetComponent<IDamage>()?.TakingDamage(_damage);
                 Destroy(gameObject);
