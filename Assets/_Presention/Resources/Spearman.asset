@@ -18,11 +18,11 @@ MonoBehaviour:
   - {fileID: 3709793816566243383, guid: a515f32697582504f97a7f43c659fe15, type: 3}
   - {fileID: 4473865157207892322, guid: a515f32697582504f97a7f43c659fe15, type: 3}
   projectilePrefab: {fileID: 7386858416302148389, guid: 365a2a4ee11d83b478fc5b6ee1a58670, type: 3}
-  buildBuildCost: 8
-  upgradeCostCost: 0300000001000000
-  upgradeCostBone: 0100000003000000
-  upgradeDamage: 5
-  upgradeAttackSpeed: 5
+  buildBuildCost: 20
+  upgradeCostCost: 280000003c000000
+  upgradeCostBone: 0f0000001e000000
+  upgradeDamage: 10
+  upgradeAttackSpeed: -2.5
   damage: 5
   speedAttack: 5
-  attackRadius: 0.05
+  attackRadius: 0.1

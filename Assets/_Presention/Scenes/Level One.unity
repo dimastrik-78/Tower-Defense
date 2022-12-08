@@ -259,7 +259,7 @@ MonoBehaviour:
   allEnemyCount: 25
   bonusFromKillingEnemies: 5
   countStartStone: 50
-  addStone: 6
+  addStone: 2
   stoneExtractionTime: 1
 --- !u!4 &11557646
 Transform:

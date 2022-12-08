@@ -291,9 +291,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b44e6ecb146e38409edbf400addd7b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  extraditionBone: 2
+  extraditionBone: 4
   healthPoint: 5
-  speed: 5
+  speed: 8
   damage: 5
 --- !u!65 &1572070480162914965
 BoxCollider:
