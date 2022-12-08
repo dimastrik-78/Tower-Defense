@@ -33,10 +33,9 @@ namespace Core
             Time.timeScale = 0;
 
             _numLevel = PlayerPrefs.GetInt("Completed Levels");
-            PlayerPrefs.SetInt("Completed Levels", _numLevel++);
-            
-            Cave.OnLoseGame -= LoseGame;
-            EnemyWave.OnLevelPassed -= LevelPassed;
+            PlayerPrefs.SetInt("Completed Levels", ++_numLevel);
+
+            OnDisable();
         }
         
         private void LoseGame()
@@ -44,7 +43,12 @@ namespace Core
             _losePanel.SetActive(true);
 
             Time.timeScale = 0;
-            
+
+            OnDisable();
+        }
+        
+        private void OnDisable()
+        {
             Cave.OnLoseGame -= LoseGame;
             EnemyWave.OnLevelPassed -= LevelPassed;
         }

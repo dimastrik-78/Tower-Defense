@@ -19023,7 +19023,6 @@ GameObject:
   - component: {fileID: 2377895069534076772}
   - component: {fileID: 2377895069534076773}
   - component: {fileID: 2377895069534076774}
-  - component: {fileID: 2377895069534076776}
   - component: {fileID: 2377895069534076775}
   m_Layer: 5
   m_Name: Canvas Gameplay
@@ -19128,6 +19127,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 05c1e1250b90655449c82cd8311c931e, type: 2}
   - {fileID: 11400000, guid: 4a47cadaebfe4c4478ab09c63ceb3990, type: 2}
   - {fileID: 11400000, guid: 18c7da5bb805ae0429fc941cddad76ae, type: 2}
+  upgradePanel: {fileID: 103795802}
   buildPanel: {fileID: 9679688}
   textTowerCost:
   - {fileID: 2377895070114560838}
@@ -19159,6 +19159,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac5a2f9c003cbf4095c1e346b46d3d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buildUI: {fileID: 9679688}
   upgradePanel: {fileID: 103795802}
   textUpgrade:
   - {fileID: 1714776733}
@@ -19173,18 +19174,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a28635e932b4a754cbed186f6be2cf8b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &2377895069534076776
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2377895069534076703}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a94b9c4415b95a0428c4f07ffea793c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &2377895069566152346

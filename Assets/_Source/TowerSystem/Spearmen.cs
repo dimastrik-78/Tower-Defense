@@ -15,6 +15,7 @@ namespace TowerSystem
 
             AttackRadius.radius = _towerSo.AttackRadius;
             ProjectilePrefab = _towerSo.ProjectilePrefab;
+            AttackTimer = _towerSo.SpeedAttack;
             SpeedAttack = _towerSo.SpeedAttack;
             Damage = _towerSo.Damage;
             MeshFilter.mesh = _towerSo.LevelView[0];
@@ -30,18 +31,18 @@ namespace TowerSystem
         {
             if (EnemyList.Count > 0)
             {
-                SpeedAttack -= Time.deltaTime;
+                AttackTimer -= Time.deltaTime;
                 
-                if (SpeedAttack <= 0)
+                if (AttackTimer <= 0)
                 {
-                    Instantiate(ProjectilePrefab, spawnPoint).GetComponent<Spear>().GettingCharacteristics(Damage, LevelTower);
+                    Instantiate(ProjectilePrefab, spawnPoint.position, spawnPoint.rotation).GetComponent<Spear>().GettingCharacteristics(Damage, LevelTower);
                     
-                    SpeedAttack = _towerSo.SpeedAttack;
+                    AttackTimer = SpeedAttack;
                 }
             }
             else
             {
-                SpeedAttack = _towerSo.SpeedAttack;
+                AttackTimer = SpeedAttack;
             }
         }
         

@@ -4280,6 +4280,7 @@ GameObject:
   - component: {fileID: 651564941}
   - component: {fileID: 651564943}
   - component: {fileID: 651564942}
+  - component: {fileID: 651564944}
   m_Layer: 5
   m_Name: BuildPanel
   m_TagString: Untagged
@@ -4351,6 +4352,32 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 651564940}
   m_CullTransparentMesh: 1
+--- !u!61 &651564944
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 651564940}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &668999304
 GameObject:
   m_ObjectHideFlags: 0
@@ -8617,6 +8644,7 @@ GameObject:
   - component: {fileID: 1311052803}
   - component: {fileID: 1311052805}
   - component: {fileID: 1311052804}
+  - component: {fileID: 1311052806}
   m_Layer: 5
   m_Name: UpgradePanel
   m_TagString: Untagged
@@ -8685,6 +8713,32 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1311052802}
   m_CullTransparentMesh: 1
+--- !u!61 &1311052806
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1311052802}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &1314335746
 GameObject:
   m_ObjectHideFlags: 0
@@ -12819,7 +12873,6 @@ GameObject:
   - component: {fileID: 2377895069282748411}
   - component: {fileID: 2377895069282748416}
   - component: {fileID: 2377895069282748415}
-  - component: {fileID: 2377895069282748414}
   - component: {fileID: 2377895069282748413}
   - component: {fileID: 2377895069282748412}
   m_Layer: 5
@@ -12858,6 +12911,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac5a2f9c003cbf4095c1e346b46d3d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buildUI: {fileID: 651564940}
   upgradePanel: {fileID: 1311052802}
   textUpgrade:
   - {fileID: 51446107}
@@ -12872,18 +12926,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a28635e932b4a754cbed186f6be2cf8b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &2377895069282748414
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2377895069282748410}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a94b9c4415b95a0428c4f07ffea793c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &2377895069282748415
@@ -12920,6 +12962,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 05c1e1250b90655449c82cd8311c931e, type: 2}
   - {fileID: 11400000, guid: 4a47cadaebfe4c4478ab09c63ceb3990, type: 2}
   - {fileID: 11400000, guid: 18c7da5bb805ae0429fc941cddad76ae, type: 2}
+  upgradePanel: {fileID: 1311052802}
   buildPanel: {fileID: 651564940}
   textTowerCost:
   - {fileID: 2055973208}

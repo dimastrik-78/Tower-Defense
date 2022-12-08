@@ -22,7 +22,7 @@ MonoBehaviour:
   upgradeCostCost: 0f0000001e000000
   upgradeCostBone: 050000000a000000
   upgradeDamage: 5
-  upgradeAttackSpeed: -1
+  upgradeAttackSpeed: -0.5
   damage: 5
   speedAttack: 3
   attackRadius: 0.1

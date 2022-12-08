@@ -6413,7 +6413,6 @@ GameObject:
   - component: {fileID: 818969288}
   - component: {fileID: 818969287}
   - component: {fileID: 818969286}
-  - component: {fileID: 818969285}
   - component: {fileID: 818969284}
   - component: {fileID: 818969283}
   m_Layer: 5
@@ -6435,6 +6434,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac5a2f9c003cbf4095c1e346b46d3d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buildUI: {fileID: 508178472}
   upgradePanel: {fileID: 1208774488}
   textUpgrade:
   - {fileID: 8091956}
@@ -6449,18 +6449,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a28635e932b4a754cbed186f6be2cf8b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &818969285
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 818969282}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a94b9c4415b95a0428c4f07ffea793c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &818969286
@@ -6497,6 +6485,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 05c1e1250b90655449c82cd8311c931e, type: 2}
   - {fileID: 11400000, guid: 4a47cadaebfe4c4478ab09c63ceb3990, type: 2}
   - {fileID: 11400000, guid: 18c7da5bb805ae0429fc941cddad76ae, type: 2}
+  upgradePanel: {fileID: 1208774488}
   buildPanel: {fileID: 508178472}
   textTowerCost:
   - {fileID: 431510457}

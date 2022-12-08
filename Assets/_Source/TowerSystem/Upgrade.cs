@@ -6,6 +6,7 @@ namespace TowerSystem
 {
     public class Upgrade : MonoBehaviour
     {
+        [SerializeField] private GameObject buildUI;
         [SerializeField] private GameObject upgradePanel;
         [SerializeField] private TextMeshProUGUI[] textUpgrade;
         
@@ -31,6 +32,7 @@ namespace TowerSystem
             _towerBase = towerBase;
             
             upgradePanel.SetActive(true);
+            buildUI.SetActive(false);
 
             textUpgrade[0].text = _towerSO.UpgradeCostStone[_towerBase.LevelTower - 1].ToString();
             textUpgrade[1].text = _towerSO.UpgradeCostBone[_towerBase.LevelTower - 1].ToString();

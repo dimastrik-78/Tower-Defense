@@ -7,7 +7,6 @@ namespace TowerSystem
     public abstract class TowerBase : MonoBehaviour
     {
         [SerializeField] protected GameObject upgradePanel;
-        [SerializeField] protected LayerMask enemyLayer;
         [SerializeField] protected Transform spawnPoint;
 
         public Upgrade Upgrade;
@@ -19,6 +18,7 @@ namespace TowerSystem
         protected SphereCollider AttackRadius;
         protected List<GameObject> EnemyList = new();
         protected GameObject ProjectilePrefab;
+        protected double AttackTimer;
 
         protected virtual void Start()
         {

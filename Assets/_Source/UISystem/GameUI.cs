@@ -20,6 +20,7 @@ namespace UISystem
 
         [Header("Towers")] 
         [SerializeField] private TowerSO[] towerSo;
+        [SerializeField] private GameObject upgradePanel;
         [SerializeField] private GameObject buildPanel;
         [SerializeField] private TextMeshProUGUI[] textTowerCost;
 
@@ -42,7 +43,7 @@ namespace UISystem
         
         private void ChangeEnemyLeft(int EnemyLeft)
         {
-            this.enemyLeft.value = EnemyLeft;
+            enemyLeft.value = EnemyLeft;
         }
         
         private void ChangeCaveHeal(int caveHeal)
@@ -79,6 +80,7 @@ namespace UISystem
             _spawnPoint = spawnPoint;
 
             buildPanel.SetActive(true);
+            upgradePanel.SetActive(false);
         }
 
         public void BuildArcherTower()

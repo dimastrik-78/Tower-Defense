@@ -150,6 +150,7 @@ namespace EnemySystem
         {
             _waveNow++;
             _enemyWaveCount = _allEnemyCount;
+            _enemiesLeft = _allEnemyCount;
             _enemySpawnTimer = _startNewWaveTime;
 
             SettingsEnemyList();
