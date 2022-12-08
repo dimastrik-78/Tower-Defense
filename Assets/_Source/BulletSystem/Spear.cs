@@ -25,7 +25,8 @@ namespace BulletSystem
         protected override void OnTriggerEnter(Collider other)
         {
             if (_towerLevel >= 3
-                && _random.Next(0, 2) == 1)
+                && _random.Next(0, 2) == 1
+                && other.gameObject.layer == 7)
             {
                 other.GetComponent<IDamage>().TakingDamage(999999);
                 Destroy(gameObject);
